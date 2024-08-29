@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0 z-10 py-2 px-10 flex gap-2 justify-between items-center bg-white max-sm:px-2">
-      <Link href="/">
+      <Link href="https://www.btcgiftshop.xyz/">
         <Image src="/logo.png" alt="logo" width={40} height={40} />
       </Link>
 
