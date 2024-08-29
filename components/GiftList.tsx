@@ -5,8 +5,8 @@ const GiftList = async () => {
   const gifts = await getGifts();
 
   return (
-    <div className="flex flex-col items-center gap-10 py-8 px-5">
-      <p className="text-heading1-bold">New Gifts</p>
+    <div className="flex flex-col items-center gap-10 py-8 px-5 mt-16 md:mt-28">
+      <p className="text-heading2-bold md:text-heading1-bold">New Gifts</p>
       {!gifts || gifts.length === 0 ? (
         <p className="text-body-bold">No gifts found</p>
       ) : (

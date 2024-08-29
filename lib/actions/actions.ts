@@ -9,7 +9,9 @@ export const getCollectionDetails = async (collectionId: string) => {
 }
 
 export const getGifts = async () => {
-  const gifts = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/gifts`)
+  const gifts = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/gifts`,
+    { cache: 'no-store' }
+  )
   return await gifts.json()
 }
 

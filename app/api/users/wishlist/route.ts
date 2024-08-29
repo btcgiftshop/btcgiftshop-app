@@ -1,13 +1,12 @@
 import User from "@/lib/models/User";
 import { connectToDB } from "@/lib/mongoDB";
 
-import { auth } from "@clerk/nextjs";
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
   try {
-    const { userId } = auth()
+    const { userId, giftId } = await req.json()
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 })
@@ -15,13 +14,11 @@ export const POST = async (req: NextRequest) => {
 
     await connectToDB()
 
-    const user = await User.findOne({ clerkId: userId })
+    const user = await User.findOne({ userId: userId })
 
     if (!user) {
       return new NextResponse("User not found", { status: 404 })
     }
-
-    const { giftId } = await req.json()
 
     if (!giftId) {
       return new NextResponse("Gift Id required", { status: 400 })

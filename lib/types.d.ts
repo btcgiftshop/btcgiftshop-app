@@ -22,7 +22,7 @@ type GiftType = {
 };
 
 type UserType = {
-  clerkId: string;
+  userId: string;
   wishlist: [string];
   createdAt: string;
   updatedAt: string;

@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
+
+import { DynamicContextProvider } from '@dynamic-labs/sdk-react-core';
+import { BitcoinWalletConnectors } from "@dynamic-labs/bitcoin";
 
 import "../globals.css";
 import Navbar from "@/components/Navbar";
 import ToasterProvider from "@/lib/providers/ToasterProvider";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +24,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ClerkProvider>
-          <ToasterProvider />
+        <DynamicContextProvider
+          settings={{
+            environmentId: '71d06823-cdcb-457c-98e0-ed06c59f9e95',
+            walletConnectors: [BitcoinWalletConnectors]
+          }}>
           <Navbar />
           {children}
-        </ClerkProvider>
+          <ToasterProvider />
+          {/* <Footer /> */}
+        </DynamicContextProvider>
       </body>
-    </html>
+    </html >
   );
 }

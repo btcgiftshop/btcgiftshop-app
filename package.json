@@ -13,7 +13,6 @@
     "@dynamic-labs/bitcoin": "^2.5.1",
     "@dynamic-labs/ethereum": "^2.5.1",
     "@dynamic-labs/sdk-react-core": "^2.5.1",
-    "@dynamic-labs/starknet": "^2.5.1",
     "@gobob/bob-sdk": "^2.0.0",
     "@stripe/stripe-js": "^3.0.6",
     "lucide-react": "^0.341.0",

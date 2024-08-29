@@ -3,11 +3,11 @@
 import Loader from "@/components/Loader"
 import GiftCard from "@/components/GiftCard"
 import { getGiftDetails } from "@/lib/actions/actions"
-import { useUser } from "@clerk/nextjs"
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import { use, useEffect, useState } from "react"
 
 const Wishlist = () => {
-  const { user } = useUser()
+  const { user } = useDynamicContext();
 
   const [loading, setLoading] = useState(true)
   const [signedInUser, setSignedInUser] = useState<UserType | null>(null)
@@ -15,8 +15,10 @@ const Wishlist = () => {
 
   const getUser = async () => {
     try {
-      const res = await fetch("/api/users")
-      const data = await res.json()
+      const res = await fetch(`/api/users/${user?.userId}`, {
+        method: "GET"
+      })
+      const data = await res.json();
       setSignedInUser(data)
       setLoading(false)
     } catch (err) {

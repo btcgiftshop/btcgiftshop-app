@@ -1,6 +1,6 @@
 "use client"
 
-import { useUser } from "@clerk/nextjs";
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ interface HeartFavoriteProps {
 
 const HeartFavorite = ({ gift, updateSignedInUser }: HeartFavoriteProps) => {
   const router = useRouter();
-  const { user } = useUser();
+  const { user } = useDynamicContext();
 
   const [loading, setLoading] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
@@ -20,7 +20,9 @@ const HeartFavorite = ({ gift, updateSignedInUser }: HeartFavoriteProps) => {
   const getUser = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/users");
+      const res = await fetch(`/api/users/${user?.userId}`, {
+        method: "GET"
+      })
       const data = await res.json();
       setIsLiked(data.wishlist.includes(gift._id));
       setLoading(false);
@@ -44,7 +46,7 @@ const HeartFavorite = ({ gift, updateSignedInUser }: HeartFavoriteProps) => {
       } else {
         const res = await fetch("/api/users/wishlist", {
           method: "POST",
-          body: JSON.stringify({ giftId: gift._id }),
+          body: JSON.stringify({ userId: user.userId, giftId: gift._id }),
         });
         const updatedUser = await res.json();
         setIsLiked(updatedUser.wishlist.includes(gift._id));

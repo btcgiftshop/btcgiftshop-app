@@ -2,7 +2,9 @@
 
 import useCart from "@/lib/hooks/useCart";
 
-import { UserButton, useUser } from "@clerk/nextjs";
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
+import { DynamicWidget } from '@dynamic-labs/sdk-react-core';
+
 import { CircleUserRound, Menu, Search, GiftIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +14,8 @@ import { useState } from "react";
 const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
-  const { user } = useUser();
+  const { user } = useDynamicContext();
+
   const cart = useCart();
 
   const [dropdownMenu, setDropdownMenu] = useState(false);
@@ -32,20 +35,22 @@ const Navbar = () => {
         >
           Home
         </Link>
-        <Link
-          href={user ? "/wishlist" : "/sign-in"}
-          className={`hover:text-red-1 ${pathname === "/wishlist" && "text-red-1"
-            }`}
-        >
-          Wishlist
-        </Link>
-        <Link
-          href={user ? "/orders" : "/sign-in"}
-          className={`hover:text-red-1 ${pathname === "/orders" && "text-red-1"
-            }`}
-        >
-          Orders
-        </Link>
+        {user && <>
+          <Link
+            href={user ? "/wishlist" : "/sign-in"}
+            className={`hover:text-red-1 ${pathname === "/wishlist" && "text-red-1"
+              }`}
+          >
+            Wishlist
+          </Link>
+          <Link
+            href={user ? "/orders" : "/sign-in"}
+            className={`hover:text-red-1 ${pathname === "/orders" && "text-red-1"
+              }`}
+          >
+            Orders
+          </Link>
+        </>}
       </div>
 
       <div className="flex gap-3 border border-grey-2 px-3 py-1 items-center rounded-lg">
@@ -82,35 +87,36 @@ const Navbar = () => {
             <Link href="/" className="hover:text-red-1">
               Home
             </Link>
-            <Link
-              href={user ? "/wishlist" : "/sign-in"}
-              className="hover:text-red-1"
-            >
-              Wishlist
-            </Link>
-            <Link
-              href={user ? "/orders" : "/sign-in"}
-              className="hover:text-red-1"
-            >
-              Orders
-            </Link>
-            <Link
-              href="/cart"
-              className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white"
-            >
-              <GiftIcon />
-              <p className="text-base-bold">Giftbox ({cart.cartItems.length})</p>
-            </Link>
+            {user && <>
+              <Link
+                href={user ? "/wishlist" : "/sign-in"}
+                className="hover:text-red-1"
+              >
+                Wishlist
+              </Link>
+              <Link
+                href={user ? "/orders" : "/sign-in"}
+                className="hover:text-red-1"
+              >
+                Orders
+              </Link>
+              <Link
+                href="/cart"
+                className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white"
+              >
+                <GiftIcon />
+                <p className="text-base-bold">Giftbox ({cart.cartItems.length})</p>
+              </Link>
+            </>}
           </div>
         )}
 
         {user ? (
-          <UserButton afterSignOutUrl="/sign-in" />
+          <DynamicWidget />
         ) : (
-          <Link href="/sign-in">
-            <CircleUserRound />
-          </Link>
+          <DynamicWidget />
         )}
+
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  clerkId: String,
+  userId: String,
   wishlist: {
     type: Array,
     default: []

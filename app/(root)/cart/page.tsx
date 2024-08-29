@@ -2,14 +2,14 @@
 
 import useCart from "@/lib/hooks/useCart";
 
-import { useUser } from "@clerk/nextjs";
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import { MinusCircle, PlusCircle, Trash } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const Giftbox = () => {
   const router = useRouter();
-  const { user } = useUser();
+  const { user } = useDynamicContext();
   const cart = useCart();
 
   const total = cart.cartItems.reduce(
@@ -18,11 +18,11 @@ const Giftbox = () => {
   );
   const totalRounded = parseFloat(total.toFixed(2));
 
-  const customer = {
-    clerkId: user?.id,
-    email: user?.emailAddresses[0].emailAddress,
-    name: user?.fullName,
-  };
+  const customer = user ? {
+    userId: user?.userId,
+    email: user?.email,
+    // name: user?.fullName,
+  } : null;
 
   const handleCheckout = async () => {
     try {
@@ -35,7 +35,7 @@ const Giftbox = () => {
         });
         const data = await res.json();
         window.location.href = data.url;
-        console.log(data);
+        // console.log(data);
       }
     } catch (err) {
       console.log("[checkout_POST]", err);
