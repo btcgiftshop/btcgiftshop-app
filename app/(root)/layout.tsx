@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <DynamicContextProvider
           settings={{
-            environmentId: '71d06823-cdcb-457c-98e0-ed06c59f9e95',
+            environmentId: process.env.DYNAMIC_ENVIROMENT_ID!,
             walletConnectors: [BitcoinWalletConnectors]
           }}>
           <Navbar />
