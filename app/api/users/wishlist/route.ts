@@ -21,24 +21,24 @@ export const POST = async (req: NextRequest) => {
       return new NextResponse("User not found", { status: 404 })
     }
 
-    const { productId } = await req.json()
+    const { giftId } = await req.json()
 
-    if (!productId) {
-      return new NextResponse("Product Id required", { status: 400 })
+    if (!giftId) {
+      return new NextResponse("Gift Id required", { status: 400 })
     }
 
-    const isLiked = user.wishlist.includes(productId)
+    const isLiked = user.wishlist.includes(giftId)
 
     if (isLiked) {
       // Dislike
-      user.wishlist = user.wishlist.filter((id: string) => id !== productId)
+      user.wishlist = user.wishlist.filter((id: string) => id !== giftId)
     } else {
       // Like
-      user.wishlist.push(productId)
+      user.wishlist.push(giftId)
     }
 
     await user.save()
-    
+
     return NextResponse.json(user, { status: 200 })
   } catch (err) {
     console.log("[wishlist_POST]", err);

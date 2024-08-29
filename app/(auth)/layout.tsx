@@ -7,8 +7,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Borcelle - Store Auth",
-  description: "Next.js 14 Borcelle Ecommerce store",
+  title: "Bitcoin Gift Shop",
+  description: "Empower Your Gifting with Bitcoin and AI",
 };
 
 export default function RootLayout({

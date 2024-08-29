@@ -1,8 +1,8 @@
 "use client"
 
 import Loader from "@/components/Loader"
-import ProductCard from "@/components/ProductCard"
-import { getProductDetails } from "@/lib/actions/actions"
+import GiftCard from "@/components/GiftCard"
+import { getGiftDetails } from "@/lib/actions/actions"
 import { useUser } from "@clerk/nextjs"
 import { use, useEffect, useState } from "react"
 
@@ -11,7 +11,7 @@ const Wishlist = () => {
 
   const [loading, setLoading] = useState(true)
   const [signedInUser, setSignedInUser] = useState<UserType | null>(null)
-  const [wishlist, setWishlist] = useState<ProductType[]>([])
+  const [wishlist, setWishlist] = useState<GiftType[]>([])
 
   const getUser = async () => {
     try {
@@ -30,23 +30,23 @@ const Wishlist = () => {
     }
   }, [user])
 
-  const getWishlistProducts = async () => {
+  const getWishlistGifts = async () => {
     setLoading(true)
 
     if (!signedInUser) return
 
-    const wishlistProducts = await Promise.all(signedInUser.wishlist.map(async (productId) => {
-      const res = await getProductDetails(productId)
+    const wishlistGifts = await Promise.all(signedInUser.wishlist.map(async (giftId) => {
+      const res = await getGiftDetails(giftId)
       return res
     }))
 
-    setWishlist(wishlistProducts)
+    setWishlist(wishlistGifts)
     setLoading(false)
   }
 
   useEffect(() => {
     if (signedInUser) {
-      getWishlistProducts()
+      getWishlistGifts()
     }
   }, [signedInUser])
 
@@ -63,8 +63,8 @@ const Wishlist = () => {
       )}
 
       <div className="flex flex-wrap justify-center gap-16">
-        {wishlist.map((product) => (
-          <ProductCard key={product._id} product={product} updateSignedInUser={updateSignedInUser} />
+        {wishlist.map((gift) => (
+          <GiftCard key={gift._id} gift={gift} updateSignedInUser={updateSignedInUser} />
         ))}
       </div>
     </div>

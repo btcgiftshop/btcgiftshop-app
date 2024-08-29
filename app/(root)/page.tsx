@@ -1,14 +1,15 @@
+import HeroSection from "@/components/HeroSection";
 import Collections from "@/components/Collections";
-import ProductList from "@/components/ProductList";
+import GiftList from "@/components/GiftList";
 
 import Image from "next/image";
 
 export default function Home() {
   return (
     <>
-      <Image src="/banner.jpg" alt="banner" width={2000} height={1000} className="w-screen" />
+      <HeroSection />
       <Collections />
-      <ProductList />
+      <GiftList />
     </>
   );
 }

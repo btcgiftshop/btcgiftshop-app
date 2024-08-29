@@ -7,7 +7,7 @@ const Orders = async () => {
   const { userId } = auth();
   const orders = await getOrders(userId as string);
 
-  console.log(orders[0]?.products);
+  console.log(orders[0]?.gifts);
 
   return (
     <div className="px-10 py-5 max-sm:px-3">
@@ -28,11 +28,11 @@ const Orders = async () => {
             </div>
 
             <div className="flex flex-col gap-5">
-              {order.products.map((orderItem: OrderItemType) => (
+              {order.gifts.map((orderItem: OrderItemType) => (
                 <div className="flex gap-4">
                   <Image
-                    src={orderItem.product.media[0]}
-                    alt={orderItem.product.title}
+                    src={orderItem.gift.media[0]}
+                    alt={orderItem.gift.title}
                     width={100}
                     height={100}
                     className="w-32 h-32 object-cover rounded-lg"
@@ -41,7 +41,7 @@ const Orders = async () => {
                     <p className="text-small-medium">
                       Title:{" "}
                       <span className="text-small-bold">
-                        {orderItem.product.title}
+                        {orderItem.gift.title}
                       </span>
                     </p>
                     {orderItem.color && (
@@ -62,7 +62,7 @@ const Orders = async () => {
                     )}
                     <p className="text-small-medium">
                       Unit price:{" "}
-                      <span className="text-small-bold">{orderItem.product.price}</span>
+                      <span className="text-small-bold">{orderItem.gift.price}</span>
                     </p>
                     <p className="text-small-medium">
                       Quantity:{" "}

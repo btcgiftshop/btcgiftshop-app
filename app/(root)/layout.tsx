@@ -6,14 +6,11 @@ import "../globals.css";
 import Navbar from "@/components/Navbar";
 import ToasterProvider from "@/lib/providers/ToasterProvider";
 
-
-
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Borcelle Store",
-  description: "Borcelle Ecommerce Store",
+  title: "Bitcoin Gift Shop",
+  description: "Empower Your Gifting with Bitcoin and AI",
 };
 
 export default function RootLayout({

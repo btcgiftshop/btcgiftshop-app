@@ -7,7 +7,7 @@ import { MinusCircle, PlusCircle, Trash } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const Cart = () => {
+const Giftbox = () => {
   const router = useRouter();
   const { user } = useUser();
   const cart = useCart();
@@ -45,7 +45,7 @@ const Cart = () => {
   return (
     <div className="flex gap-20 py-16 px-10 max-lg:flex-col max-sm:px-3">
       <div className="w-2/3 max-lg:w-full">
-        <p className="text-heading3-bold">Shopping Cart</p>
+        <p className="text-heading3-bold">Shopping Giftbox</p>
         <hr className="my-6" />
 
         {cart.cartItems.length === 0 ? (
@@ -60,7 +60,7 @@ const Cart = () => {
                     width={100}
                     height={100}
                     className="rounded-lg w-32 h-32 object-cover"
-                    alt="product"
+                    alt="gift"
                   />
                   <div className="flex flex-col gap-3 ml-4">
                     <p className="text-body-bold">{cartItem.item.title}</p>
@@ -99,9 +99,8 @@ const Cart = () => {
       <div className="w-1/3 max-lg:w-full flex flex-col gap-8 bg-grey-1 rounded-lg px-4 py-5">
         <p className="text-heading4-bold pb-4">
           Summary{" "}
-          <span>{`(${cart.cartItems.length} ${
-            cart.cartItems.length > 1 ? "items" : "item"
-          })`}</span>
+          <span>{`(${cart.cartItems.length} ${cart.cartItems.length > 1 ? "items" : "item"
+            })`}</span>
         </p>
         <div className="flex justify-between text-body-semibold">
           <span>Total Amount</span>
@@ -118,4 +117,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Giftbox;

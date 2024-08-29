@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface HeartFavoriteProps {
-  product: ProductType;
+  gift: GiftType;
   updateSignedInUser?: (updatedUser: UserType) => void;
 }
 
-const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
+const HeartFavorite = ({ gift, updateSignedInUser }: HeartFavoriteProps) => {
   const router = useRouter();
   const { user } = useUser();
 
@@ -22,7 +22,7 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
       setLoading(true);
       const res = await fetch("/api/users");
       const data = await res.json();
-      setIsLiked(data.wishlist.includes(product._id));
+      setIsLiked(data.wishlist.includes(gift._id));
       setLoading(false);
     } catch (err) {
       console.log("[users_GET]", err);
@@ -44,10 +44,10 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
       } else {
         const res = await fetch("/api/users/wishlist", {
           method: "POST",
-          body: JSON.stringify({ productId: product._id }),
+          body: JSON.stringify({ giftId: gift._id }),
         });
         const updatedUser = await res.json();
-        setIsLiked(updatedUser.wishlist.includes(product._id));
+        setIsLiked(updatedUser.wishlist.includes(gift._id));
         updateSignedInUser && updateSignedInUser(updatedUser);
       }
     } catch (err) {

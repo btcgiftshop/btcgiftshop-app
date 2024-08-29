@@ -3,7 +3,7 @@
 import useCart from "@/lib/hooks/useCart";
 
 import { UserButton, useUser } from "@clerk/nextjs";
-import { CircleUserRound, Menu, Search, ShoppingCart } from "lucide-react";
+import { CircleUserRound, Menu, Search, GiftIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -68,8 +68,8 @@ const Navbar = () => {
           href="/cart"
           className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white max-md:hidden"
         >
-          <ShoppingCart />
-          <p className="text-base-bold">Cart ({cart.cartItems.length})</p>
+          <GiftIcon />
+          <p className="text-base-bold">Giftbox ({cart.cartItems.length})</p>
         </Link>
 
         <Menu
@@ -98,8 +98,8 @@ const Navbar = () => {
               href="/cart"
               className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white"
             >
-              <ShoppingCart />
-              <p className="text-base-bold">Cart ({cart.cartItems.length})</p>
+              <GiftIcon />
+              <p className="text-base-bold">Giftbox ({cart.cartItems.length})</p>
             </Link>
           </div>
         )}

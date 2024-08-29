@@ -1,11 +1,11 @@
 type CollectionType = {
   _id: string;
   title: string;
-  products: number;
+  gifts: number;
   image: string;
 };
 
-type ProductType = {
+type GiftType = {
   _id: string;
   title: string;
   description: string;
@@ -32,13 +32,13 @@ type OrderType = {
   shippingAddress: Object;
   _id: string;
   customerClerkId: string;
-  products: [OrderItemType]
+  gifts: [OrderItemType]
   shippingRate: string;
   totalAmount: number
 }
 
 type OrderItemType = {
-  product: ProductType;
+  gift: GiftType;
   color: string;
   size: string;
   quantity: number;
