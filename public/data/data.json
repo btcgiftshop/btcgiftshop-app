@@ -1,4 +1,16 @@
 {
+  "initialMessages": [
+    {
+      "id": 1,
+      "sender": "bot",
+      "text": "Welcome to BTCGiftShop! We're your go-to place for innovative, beautiful, and unique gifts. Whether you're looking for a special gift or an investment, we've got you covered."
+    },
+    {
+      "id": 2,
+      "sender": "bot",
+      "text": "This is an early demo that is currently under development."
+    }
+  ],
   "conversation": [
     {
       "id": 1,

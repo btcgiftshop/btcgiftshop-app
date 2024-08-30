@@ -16,37 +16,37 @@ const ChatPage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
-  // useEffect(() => {
-  //   // Fetch initial data from the JSON file
-  //   fetch('/data/data.json')
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setMessages(data.initialMessages);
-  //     });
-  // }, []);
-
   useEffect(() => {
     // Fetch initial data from the JSON file
     fetch('/data/data.json')
       .then((response) => response.json())
       .then((data) => {
-        // Loop through the conversation and simulate typing
-        let prevMessages: Message[] = [];
-        data.conversation.forEach((msg: Message, index: number) => {
-          setTimeout(() => {
-            // setMessages((prevMessages) => [...prevMessages, msg]);
-            prevMessages = [...prevMessages, msg];
-            setMessages(prevMessages);
-
-            if (msg.text === "typing...") {
-              setIsTyping(true);
-            } else {
-              setIsTyping(false);
-            }
-          }, index * (msg.sender === 'user' ? 2500 : 2000)); // Adjust the timing as needed
-        });
+        setMessages(data.initialMessages);
       });
   }, []);
+
+  // useEffect(() => {
+  //   // Fetch initial data from the JSON file
+  //   fetch('/data/data.json')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       // Loop through the conversation and simulate typing
+  //       let prevMessages: Message[] = [];
+  //       data.conversation.forEach((msg: Message, index: number) => {
+  //         setTimeout(() => {
+  //           // setMessages((prevMessages) => [...prevMessages, msg]);
+  //           prevMessages = [...prevMessages, msg];
+  //           setMessages(prevMessages);
+
+  //           if (msg.text === "typing...") {
+  //             setIsTyping(true);
+  //           } else {
+  //             setIsTyping(false);
+  //           }
+  //         }, index * (msg.sender === 'user' ? 2500 : 2000)); // Adjust the timing as needed
+  //       });
+  //     });
+  // }, []);
 
 
 
