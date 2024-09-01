@@ -1,6 +1,6 @@
 "use client";
 
-import useCart from "@/lib/hooks/useCart";
+import useGiftbox from "@/lib/hooks/useGiftbox";
 
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import { DynamicWidget } from '@dynamic-labs/sdk-react-core';
@@ -16,7 +16,7 @@ const Navbar = () => {
   const router = useRouter();
   const { user } = useDynamicContext();
 
-  const cart = useCart();
+  const giftbox = useGiftbox();
 
   const [dropdownMenu, setDropdownMenu] = useState(false);
   const [query, setQuery] = useState("");
@@ -70,11 +70,11 @@ const Navbar = () => {
 
       <div className="relative flex gap-3 items-center">
         <Link
-          href="/cart"
+          href="/giftbox"
           className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white max-md:hidden"
         >
           <GiftIcon />
-          <p className="text-base-bold">Giftbox ({cart.cartItems.length})</p>
+          <p className="text-base-bold">Giftbox ({giftbox.giftboxItems.length})</p>
         </Link>
 
         <Menu
@@ -101,11 +101,11 @@ const Navbar = () => {
                 Orders
               </Link>
               <Link
-                href="/cart"
+                href="/giftbox"
                 className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white"
               >
                 <GiftIcon />
-                <p className="text-base-bold">Giftbox ({cart.cartItems.length})</p>
+                <p className="text-base-bold">Giftbox ({giftbox.giftboxItems.length})</p>
               </Link>
             </>}
           </div>

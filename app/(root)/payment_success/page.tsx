@@ -1,14 +1,14 @@
 "use client"
 
-import useCart from "@/lib/hooks/useCart";
+import useGiftbox from "@/lib/hooks/useGiftbox";
 import Link from "next/link";
 import { useEffect } from "react";
 
 const SuccessfulPayment = () => {
-  const cart = useCart();
+  const giftbox = useGiftbox();
 
   useEffect(() => {
-    cart.clearCart();
+    giftbox.clearGiftbox();
   }, []);
 
   return (
@@ -19,7 +19,7 @@ const SuccessfulPayment = () => {
         href="/"
         className="p-4 border text-base-bold hover:bg-black hover:text-white"
       >
-        CONTINUE TO SHOPPING
+        CONTINUE TO GIFTING
       </Link>
     </div>
   );

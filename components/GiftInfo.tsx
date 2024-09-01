@@ -4,7 +4,7 @@ import { useState } from "react";
 import HeartFavorite from "./HeartFavorite";
 import { MinusCircle, PlusCircle } from "lucide-react";
 
-import useCart from "@/lib/hooks/useCart";
+import useGiftbox from "@/lib/hooks/useGiftbox";
 
 const GiftInfo = ({ giftInfo }: { giftInfo: GiftType }) => {
   const [selectedColor, setSelectedColor] = useState<string>(
@@ -15,7 +15,7 @@ const GiftInfo = ({ giftInfo }: { giftInfo: GiftType }) => {
   );
   const [quantity, setQuantity] = useState<number>(1);
 
-  const cart = useCart();
+  const giftbox = useGiftbox();
 
   return (
     <div className="max-w-[400px] flex flex-col gap-4">
@@ -90,7 +90,7 @@ const GiftInfo = ({ giftInfo }: { giftInfo: GiftType }) => {
       <button
         className="outline text-base-bold py-3 w-[150px] rounded-lg hover:bg-black hover:text-white"
         onClick={() => {
-          cart.addItem({
+          giftbox.addItem({
             item: giftInfo,
             quantity,
             color: selectedColor,
