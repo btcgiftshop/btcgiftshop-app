@@ -21,7 +21,7 @@ const HeroSection = () => {
         </div>
         <div className='flex justify-center items-center'>
           <Link href='/start' className='rounded-[20px] w-fit h-auto bg-first-color px-20 py-5 text-[0.9rem] md:text-[1.2rem] font-medium text-white mt-10 cursor-pointer'>
-            💝 Create New Gift
+            🧸 Create New Gift
           </Link>
         </div>
       </div>

@@ -34,7 +34,7 @@ const useGiftbox = create(
         }
 
         set({ giftboxItems: [...currentItems, { item, quantity, color, size }] });
-        toast.success("Item added to giftbox", { icon: "🛒" });
+        toast.success("Item added to giftbox", { icon: "🎁" });
       },
       removeItem: (idToRemove: String) => {
         const newGiftboxItems = get().giftboxItems.filter(
