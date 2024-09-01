@@ -41,7 +41,7 @@ const HeartFavorite = ({ gift, updateSignedInUser }: HeartFavoriteProps) => {
     e.preventDefault();
     try {
       if (!user) {
-        router.push("/sign-in");
+        // router.push("/sign-in");
         return;
       } else {
         const res = await fetch("/api/users/wishlist", {

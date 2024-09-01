@@ -1,11 +1,13 @@
+"use client";
+
 import { getOrders } from "@/lib/actions/actions";
 
-import { auth } from "@clerk/nextjs";
+import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 import Image from "next/image";
 
 const Orders = async () => {
-  const { userId } = auth();
-  const orders = await getOrders(userId as string);
+  const { user } = useDynamicContext();
+  const orders = await getOrders(user?.userId as string);
 
   // console.log(orders[0]?.gifts);
 

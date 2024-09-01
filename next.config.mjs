@@ -17,7 +17,7 @@ const nextConfig = {
     config.externals.push('pino-pretty', /* add any other modules that might be causing the error */);
     return config;
   },
-  crossOrigin: 'anonymous', // or 'use-credentials'
+  // crossOrigin: 'anonymous', // or 'use-credentials'
   async headers() {
     return [
       {
