@@ -1,6 +1,6 @@
 {
-  "name": "borcella_store",
-  "version": "0.1.0",
+  "name": "btcgiftshop_app",
+  "version": "0.8.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
